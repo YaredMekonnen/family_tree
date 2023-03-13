@@ -11,7 +11,7 @@
   <div id="myDiv"></div>
   <script>
     var graphJSON = "{{ graphJSON | safe }}";
-    Plotly.newPlot('myDiv', graphJSON);
+    // Plotly.newPlot('myDiv', graphJSON);
     Plotly.newPlot('myDiv', graphJSON.data, graphJSON.layout);
   </script>
 </body>
