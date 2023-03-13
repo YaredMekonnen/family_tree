@@ -116,6 +116,6 @@ family_tree.add_relationship("Person3", "parent", "Person5")
 family_tree.add_relationship("Person5", "child", "Person3")
 family_tree.add_relationship("Person4", "parent", "Person6")
 family_tree.add_relationship("Person6", "child", "Person4")
-
+family_tree.save_tree("index.html")
 # display the family tree graph
 family_tree.display_tree()
