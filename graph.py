@@ -35,8 +35,10 @@ class Graph:
             x_pos, y_pos, edges = pos[name]
             edge_text = "<br>".join([f"{edge[0]}: {edge[1]}" for edge in edges])
             fig.add_trace(go.Scatter(x=[x_pos], y=[y_pos], mode='markers+text', marker=dict(size=20), text=f"{name}<br>{edge_text}", textposition='top center', hoverinfo='text'))
+        fig.add_trace(go.Scatter(x=[pos[name][0] for name in pos], y=[pos[name][1] for name in pos], mode='text', text=list(self.vertices.keys()), textposition='bottom center'))
         fig.update_layout(showlegend=False)
         return fig
+
 
     
     def get_node_positions(self):
