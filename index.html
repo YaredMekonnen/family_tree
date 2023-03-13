@@ -6,6 +6,12 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-  <div id="my-plotly-graph"></div>
+  <div id="myDiv"></div>
+  <script>
+    var graphJSON = {{ graphJSON|safe }};
+    Plotly.newPlot('myDiv', graphJSON);
+  </script>
 </body>
 </html>
+
+

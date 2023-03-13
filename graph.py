@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+import json
 
 class Graph:
     def __init__(self):
@@ -15,7 +16,12 @@ class Graph:
         self.vertices[person1].append((person2, relationship))
         self.vertices[person2].append((person1, relationship))
         self.edges.append((person1, person2, relationship))
-
+    
+    def save_tree(self, filename):
+        fig = self.display_tree()
+        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+        with open(filename, "w") as f:
+            f.write(f"var graphJSON = {graphJSON};")
     
     def display_tree(self):
         fig = go.Figure()
@@ -29,7 +35,8 @@ class Graph:
             edge_text = "<br>".join([f"{edge[0]}: {edge[1]}" for edge in edges])
             fig.add_trace(go.Scatter(x=[x_pos], y=[y_pos], mode='markers+text', marker=dict(size=20), text=f"{name}<br>{edge_text}", textposition='top center', hoverinfo='text'))
         fig.update_layout(showlegend=False)
-        fig.show()
+        return fig
+
     
     def get_node_positions(self):
         if not self.vertices:
